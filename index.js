@@ -19,6 +19,18 @@ app.use(professoresRouter)
 const alunosRouter = require('./routes/alunos')
 app.use(alunosRouter)
 
+const turmasRouter = require('./routes/turmas')
+app.use(turmasRouter)
+
+const disciplinasRouter = require('./routes/disciplinas')
+app.use(disciplinasRouter)
+
+const notasRouter = require('./routes/notas')
+app.use(notasRouter)
+
+
+
+
 //executar a aplicação
 
 app.listen(3000, () => {
