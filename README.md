@@ -29,6 +29,8 @@ PUT /alunos/:id → atualizar aluno
 
 DELETE /alunos/:id → excluir aluno
 
+
+
 🔹 2. Professores
 
 Campos sugeridos:
@@ -44,6 +46,8 @@ email
 telefone
 
 👉 Rotas CRUD iguais às de alunos, mas aplicadas a professores.
+
+
 
 🔹 3. Turmas
 
@@ -63,7 +67,9 @@ GET /turmas
 
 POST /turmas
 
-etc.
+PUT /turmas
+
+DELETE /turmas
 
 🔹 4. Disciplinas
 
