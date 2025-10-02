@@ -77,4 +77,4 @@ router.delete('/disciplina/:id', (req, res, next) => {
   
   
   // exportar o roteador
-  module.exports = router
+ module.exports = router;
