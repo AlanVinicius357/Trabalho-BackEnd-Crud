@@ -10,13 +10,14 @@ professorId
 const express = require('express')
 const router = express.Router()
 
-let disciplinas = {
- id: 1,
- nome: 'Matemática',
- cargaHoraria: '120',
- professorId: '1'   
-
-}
+let disciplinas = [
+    {
+        id: 1,
+        nome: 'Matemática',
+        cargaHoraria: '120',
+        professorId: '1'   
+    }
+]
 
 router.get('/disciplina', (req, res, next)=>{
     res.json(disciplinas)
@@ -25,12 +26,12 @@ router.get('/disciplina/:id',(req,res,next)=>{
     const id = req.params.id
     const disciplina = disciplinas.find(disciplina => disciplina.id == id)
 
-    if(!diciplina){
+    if(!disciplina){
         return res.status(404).json({erro: 'Disciplina não encontrada'})
     }
     res.json(disciplina)
 })
-router.post('disciplina', (req, res,next)=>{
+router.post('/disciplina', (req, res,next)=>{
     const{nome, cargaHoraria, professorId} = req.body
     if(!nome || !cargaHoraria || !professorId ){
         return res.status(400).json({error: "Todos os campos são obrigátorios"})
