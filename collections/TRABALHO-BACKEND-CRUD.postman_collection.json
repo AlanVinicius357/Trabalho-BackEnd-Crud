@@ -390,15 +390,22 @@
 				{
 					"name": "Buscar a lista de Notas",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"alunoId\": 107,\r\n  \"disciplinaId\": 303,\r\n  \"nota\": 7.5,\r\n  \"bimestre\": 3\r\n}"
+						},
 						"url": {
-							"raw": "http://localhost:3000",
+							"raw": "http://localhost:3000/notas",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000"
+							"port": "3000",
+							"path": [
+								"notas"
+							]
 						}
 					},
 					"response": []
