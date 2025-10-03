@@ -1,98 +1,160 @@
 # Trabalho-BackEnd-Crud
-Trabalho-Backend-Crud
-testando comit
+
+API Escolar – Gestão Acadêmica
+
+O intuito da nossa aplicação é desenvolver o BackEnd para uma rede escolar, com CRUDs necessários para cadastro e administração da instituição.
+
+API REST desenvolvida em Node.js + Express, com 5 CRUDs completos: Alunos, Professores, Turmas, Disciplinas e Notas.
+Os dados são armazenados em memória (arrays) e manipulados via rotas seguindo as convenções REST.
 
 
-1. Alunos
+Instalação e Execução
 
-Campos sugeridos:
+1- instalção e dependências 
+npm init -y = criação da apliacação
+npm install express cors = instalação das dependências express e cors
+npm install --save-dev nodemon jest supertest = instalação para atualização em tempo real do servidor em caso de mudanças na aplicação
 
-id (numérico, auto-incremento ou gerado)
+2-Clone o repositório
+git clone https://github.com/AlanVinicius357/Trabalho-BackEnd-Crud.git
 
-nome (string, obrigatório)
+3-Execute a aplicação
+npm start - configurado no package.json "nodemon index.js"
 
-matricula (string ou número único)
-
-idade (number)
-
-turmaId (referência à turma que pertence)
-
-👉 Rotas possíveis:
-
-GET /alunos → listar todos
-
-GET /alunos/:id → buscar por id
-
-POST /alunos → criar aluno
-
-PUT /alunos/:id → atualizar aluno
-
-DELETE /alunos/:id → excluir aluno
+4-Acesso a API
+http://localhost:3000
 
 
 
-🔹 2. Professores
+Endpoints
 
-Campos sugeridos:
+-----Alunos (/alunos)------
 
-id
+GET /alunos → lista todos os alunos
 
-nome
+GET /alunos/:id → retorna um aluno pelo ID
 
-disciplina (string)
+POST /alunos → criação novo aluno
+Exemplo body:
+{
+        id: 1, 
+        nome: 'Wendel Ferreira Santos', 
+        matricula: 2142948, 
+        idade: 20, 
+        turma:'3A',
+    },
 
-email
+PUT /alunos/:id → atualiza aluno
 
-telefone
-
-👉 Rotas CRUD iguais às de alunos, mas aplicadas a professores.
+DELETE /alunos/:id → remove aluno
 
 
 
-🔹 3. Turmas
+------Professores (/professores)------
 
-Campos sugeridos:
+GET /professores - listar professores
 
-id
+GET /professores/:id - listar professor pelo id
 
-nome (ex: "3º Ano A")
+POST /professores - criar cadastro novo professor
+Ex:
+ {
+        id: 2, 
+        nome: 'João da silva', 
+        disciplina: 'Portugues', 
+        email: 'Joao@gmail.com',
+        telefone: 61988888888,
+    },
 
-turno (manhã, tarde, noite)
+PUT /professores/:id - atualizar cadastro professor
 
-anoLetivo
+DELETE /professores/:id - deletar cadastro
 
-👉 Rotas:
 
-GET /turmas
 
-POST /turmas
+------Turmas (/turmas)------
 
-PUT /turmas
+GET /turmas - listar turmas 
 
-DELETE /turmas
+GET /turmas/:id - listar turma pelo id
 
-🔹 4. Disciplinas
+POST /turmas - criar nova turma
+Ex: 
+{
+  "nome": "1ºB",
+  "turno": "Manhã",
+  "anoLetivo": 2025
+}
 
-Campos sugeridos:
+PUT /turmas/:id - atualizar turma através do id
 
-id
+DELETE /turmas/:id - deletar turma através do id
 
-nome (ex: Matemática, História)
 
-cargaHoraria (número em horas)
 
-professorId (referência ao professor responsável)
+------Disciplinas (/disciplinas)------
 
-🔹 5. Notas
+GET /disciplinas - listar disciplinas
 
-Campos sugeridos:
+GET /disciplinas/:id - listar disciplina id
 
-id
+POST /disciplinas - criar nova disciplina
+Ex:
+{
+    "id":1
+  "nome": "Matemática",
+  "cargaHoraria": "120",
+  "professorId": 1
+}
 
-alunoId (referência ao aluno)
+PUT /disciplinas/:id - atualizar disciplina id
 
-disciplinaId (referência à disciplina)
+DELETE /disciplinas/:id - deletar disciplina id
 
-nota (número 0–10)
 
-bimestre (1, 2, 3, 4)
+------Notas (/notas)------
+
+GET /notas - listar notas
+
+GET /notas/:id - listar nota id
+
+POST /notas - criar nova nota
+Ex:
+{
+  "alunoId": 1,
+  "disciplinaId": 2,
+  "nota": 8.5
+}
+PUT /notas/:id - atualizar nota id
+
+DELETE /notas/:id - deletar nota id
+
+
+
+Integrantes do Grupo
+
+Alan Vinicius – AlanVinicius357
+
+➝ Criação e configuração do repositório da aplicação.
+➝ Implementação do CRUD Turmas.
+➝ Documentação do README.
+
+
+Luan Barbosa - luanbsantana
+
+➝ Instalação da aplicação junto as dependências.
+➝ Implementação do CRUD Disciplina.
+➝ Integração no index.js.
+
+
+Wendel Ferreira – Wendels1
+
+➝ Implementação dos CRUDs Alunos e Professores.
+➝ Responsável pela Collection do Postman ao repositório Git.
+
+
+Arthur Barbosa – arthurgbabarbosa-png
+
+➝ Implementação do CRUD notas.
+➝ Auxilio na Collection do Postman.
+
