@@ -26,11 +26,13 @@ let listaAlunos = [
     },
 ]
 
+// #Lista todos os alunos
 router.get('/alunos', (req, res, next) => {
     res.json(listaAlunos);
 });
 
-router.get('/alunos/id', (req, res, next) => {
+// #Busca por id
+router.get('/alunos/:id', (req, res, next) => {
     const id = req.params.id;
 
     const aluno = listaAlunos.find(aluno => aluno.id == id);
@@ -41,13 +43,14 @@ router.get('/alunos/id', (req, res, next) => {
 });
 
 // Criação de um novo aluno
-router.post('/alunos'), (req, res, next) => {
+router.post('/alunos', (req, res, next) => {
     const { nome, matricula, idade, turma  } = req.body;
-
+    // Validação dos dados
     if(!nome || !matricula || !idade || !turma){
         return res.status(400).json({error: 'Dados incompletos'});
     }
 
+    // Verifica se a matrícula já existe
     if(listaAlunos.some(aluno => aluno.matricula === matricula)){
         return res.status(409).json({error: 'Matrícula já existe'});
     }
@@ -62,7 +65,42 @@ router.post('/alunos'), (req, res, next) => {
 
     listaAlunos.push(novoAluno);
     res.status(201).json({message: "Aluno cadastrado com sucesso"},novoAluno);
-}
+});
 
+// Atualização de um aluno existente
+router.put('/alunos/:id', (req, res, next) => {
+    const id = req.params.id;
+    const aluno = listaAlunos.find(aluno => aluno.id == id);
 
-module.exports = router;
+    if(!aluno){
+        return res.status(404).json({error: 'Aluno não encontrado'});
+    }
+
+    const { nome, matricula, idade, turma } = req.body;
+    if(!nome || !matricula || !idade || !turma){
+        return res.status(400).json({error: 'Dados incompletos'});
+    }
+
+    // atualiza os dados do aluno
+    aluno.nome = nome;
+    aluno.matricula = matricula;
+    aluno.idade = idade;
+    aluno.turma = turma;
+    
+    res.json({message: 'Aluno atualizado com sucesso'}, aluno);
+})
+
+// Remoção de um aluno
+router.delete('/alunos/:id', (req, res, next) => {
+    const id = req.params.id;
+
+    const aluno = listaAlunos.find(aluno => aluno.id == id);
+    if(!aluno){
+        return res.status(404).json({error: 'Aluno não encontrado'});
+    }
+
+    listaAlunos = listaAlunos.filter(aluno => aluno.id != id);
+    res.json({message: 'Aluno removido com sucesso'});
+})
+
+module.exports = router

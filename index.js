@@ -13,21 +13,29 @@ app.use(express.json())
 
 //roteadores 
 
-const professoresRouter = require('./routes/professores')
-app.use(professoresRouter)
+CrudAlunos/Professores
 
-const alunosRouter = require('./routes/alunos')
-app.use(alunosRouter)
+const professoresRouter = require('./routes/professores');
+app.use('/professores', professoresRouter);
+main
 
-const turmasRouter = require('./routes/turmas')
-app.use(turmasRouter)
+const alunosRouter = require('./routes/alunos');
+app.use('/alunos', alunosRouter);
 
-const disciplinasRouter = require('./routes/disciplinas')
-app.use(disciplinasRouter)
+CrudAlunos/Professores
 
-const notasRouter = require('./routes/notas')
-app.use(notasRouter)
 
+
+
+const turmasRouter = require('./routes/turmas');
+app.use('/turmas', turmasRouter);
+
+const disciplinasRouter = require('./routes/disciplinas');
+app.use('/disciplinas', disciplinasRouter);
+main
+
+const notasRouter = require('./routes/notas');
+app.use('/notas', notasRouter);
 
 
 
